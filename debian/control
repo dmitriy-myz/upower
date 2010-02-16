@@ -1,0 +1,108 @@
+Source: upower
+Section: admin
+Priority: optional
+Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Uploaders: Michael Biebl <biebl@debian.org>, Martin Pitt <mpitt@debian.org>
+Build-Depends: debhelper (>= 7),
+ cdbs,
+ autotools-dev,
+ quilt,
+ pkg-config,
+ xsltproc,
+ gtk-doc-tools,
+ intltool (>= 0.40.0),
+ libdbus-glib-1-dev (>= 0.76),
+ libdbus-1-dev (>= 1.0),
+ libglib2.0-dev (>= 2.16.1),
+ libgudev-1.0-dev,
+ libpolkit-gobject-1-dev (>= 0.91),
+ libusb-dev
+Standards-Version: 3.8.4
+Vcs-Git: git://git.debian.org/git/pkg-utopia/upower.git
+Vcs-Browser: http://git.debian.org/?p=pkg-utopia/upower.git;a=summary
+Homepage: http://hal.freedesktop.org/docs/DeviceKit-power
+
+Package: upower
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, udev
+Recommends: pm-utils, policykit-1
+Description: abstraction for power management
+ upower provides an interface to enumerate power sources on the system
+ and control system-wide power management. Any application can access the
+ org.freedesktop.UPower service on the system message bus. Some
+ operations (such as suspending the system) are restricted using PolicyKit.
+
+Package: upower-doc
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Conflicts: devicekit-power-doc (<< 1:0)
+Replaces: devicekit-power-doc (<< 1:0)
+Suggests: devhelp
+Description: abstraction for power management - documentation
+ upower provides an interface to enumerate power sources on the system
+ and control system-wide power management. Any application can access the
+ org.freedesktop.UPower service on the system message bus. Some
+ operations (such as suspending the system) are restricted using PolicyKit.
+
+Package: libupower-glib1
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: abstraction for power management - shared library
+ upower provides an interface to enumerate power sources on the system
+ and control system-wide power management. Any application can access the
+ org.freedesktop.UPower service on the system message bus. Some
+ operations (such as suspending the system) are restricted using PolicyKit.
+ .
+ This package contains the shared library to be used by applications.
+
+Package: libupower-glib-dev
+Architecture: any
+Section: libdevel
+Depends: ${shlibs:Depends}, ${misc:Depends}, libglib2.0-dev, libupower-glib1 (= ${binary:Version})
+Description: abstraction for power management - development files
+ upower provides an interface to enumerate power sources on the system
+ and control system-wide power management. Any application can access the
+ org.freedesktop.UPower service on the system message bus. Some
+ operations (such as suspending the system) are restricted using PolicyKit.
+ .
+ This package contains files that are needed to build applications.
+
+Package: devicekit-power-doc
+Architecture: all
+Section: oldlibs
+Depends: upower-doc
+Description: transitional package to upower-doc
+ This is a transitional package to faciliate the upgrade to the new name
+ upower-doc. It can be safely removed after the upgrade.
+
+Package: libdevkit-power-gobject1
+Architecture: any
+Section: oldlibs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Breaks: devicekit-power (<< 011)
+Description: abstraction for power management - shared library (old ABI)
+ upower provides an interface to enumerate power sources on the system
+ and control system-wide power management. Any application can access the
+ org.freedesktop.UPower service on the system message bus. Some
+ operations (such as suspending the system) are restricted using PolicyKit.
+ .
+ This package contains an old version of the shared library to be used by
+ applications. It provides the same ABI as the old DeviceKit-power library, but
+ works with upower.
+
+Package: libdevkit-power-gobject-dev
+Architecture: any
+Section: oldlibs
+Depends: ${shlibs:Depends}, ${misc:Depends}, libglib2.0-dev, libdevkit-power-gobject1 (= ${binary:Version})
+Description: abstraction for power management - development files (old API)
+ upower provides an interface to enumerate power sources on the system
+ and control system-wide power management. Any application can access the
+ org.freedesktop.UPower service on the system message bus. Some
+ operations (such as suspending the system) are restricted using PolicyKit.
+ .
+ This package contains development files for the  old version of the shared
+ library. It provides the same API as the old DeviceKit-power library, but
+ works with upower.
+

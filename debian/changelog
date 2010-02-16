@@ -1,0 +1,152 @@
+upower (0.9.0+git20100216.72bb2-1) experimental; urgency=low
+
+  [ Martin Pitt ]
+  * New upstream release, and updating to current git head:
+    - Rename the project, library, and D-Bus interface to upower.
+    - Bug fixes.
+    - Translation updates.
+    - Set client library's can_{suspend,hibernate} properties to False if
+      suspend/hibernate is prohibited through PolicyKit. (LP: #432598)
+  * Drop 01-lid-status-fallback.patch, 02-dkpclient-singleton.patch: Applied
+    upstream.
+  * debian/rules, debian/control: Add an epoch to the transitional
+    devicekit-power-doc package, so that the upgrade will actually work.
+  * debian/rules: Explicitly enable gtk-doc building, upstream configure
+    disables that now.
+  * Build libdevkit-power-gobject{1,-dev} packages, but mark them as obsolete.
+    These are still necessary, until upowerd is fully ported to the new
+    libupower-glib.
+
+  [ Michael Biebl ]
+  * debian/upower.install: Only install upower and upowerd, not the
+    transitional symlinks.
+  * debian/control: Bump Standards-Version to 3.8.4. No further changes.
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 16 Feb 2010 10:10:47 +0100
+
+devicekit-power (014-3) unstable; urgency=low
+
+  * Add 02-dkpclient-singleton.patch: Make DkpClient a singleton to avoid some
+    weird race conditions. Patch taken from upstream git. (Closes: #567021, 
+    LP: #425411)
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 26 Jan 2010 20:26:03 +0100
+
+devicekit-power (014-2) unstable; urgency=low
+
+  * debian/patches/01-lid-status-fallback.patch
+    - Use a fallback for the capability bit when checking the lid status.
+      Patch pulled from upstream Git. (Closes: #555740)
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 12 Jan 2010 09:51:53 +0100
+
+devicekit-power (014-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Martin Pitt <mpitt@debian.org>  Mon, 11 Jan 2010 09:33:33 +0100
+
+devicekit-power (013-1) unstable; urgency=low
+
+  * New upstream release.
+  * Drop 01-fix-hibernate-has-encrypted-swap-check.patch, merged upstream.
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 07 Dec 2009 11:39:29 +0100
+
+devicekit-power (012-2) unstable; urgency=low
+
+  * debian/patches/01-fix-hibernate-has-encrypted-swap-check.patch
+    - Fix broken check if swap space is encrypted. (Closes: #551797)
+      Thanks to Michael Ott for spotting this.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 21 Oct 2009 16:07:56 +0200
+
+devicekit-power (012-1) unstable; urgency=low
+
+  * New upstream release
+    - Properly refresh update-time after AC changes. This avoids immediately
+      suspending again when AC state changes during suspend. (LP: #425411)
+  * debian/control
+    - Add dependency on udev.
+  * debian/devicekit-power.postinst
+    - Use start-stop-daemon instead of kill+pidof to stop the running
+      devkit-power-daemon process on upgrades.
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 19 Oct 2009 17:13:24 +0200
+
+devicekit-power (011-1) unstable; urgency=low
+
+  [ Michael Biebl ]
+  * New upstream release.
+  * debian/control
+    - Add Recommends on pm-utils and policykit-1.
+
+  [ Martin Pitt ]
+  * debian/control:  This version changes the internal D-BUS API. Make library
+    and daemon break each other for versions prior to 011, to avoid partial
+    upgrades.
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 06 Oct 2009 18:04:57 +0200
+
+devicekit-power (010-2) unstable; urgency=low
+
+  [ Martin Pitt ]
+  * debian/control: Add missing libdevkit-power-gobject1 dependency to -dev.
+  * Add debian/devicekit-power.postinst: Kill the old devkit-power-daemon on
+    upgrade, to ensure that the new version will be used at the next occasion.
+
+  [ Michael Biebl ]
+  * debian/devicekit-power.{install,manpages}: Install manpages using the
+    *.install file and drop redundant *.manpages file.
+  * debian/libdevkit-power-gobject1.symbols: Add symbols file for improved
+    shlibs dependencies.
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 28 Sep 2009 16:59:43 +0200
+
+devicekit-power (010-1) unstable; urgency=low
+
+  [ Martin Pitt ]
+  * New upstream release:
+    - Port to PolicyKit 1 API.
+    - Port from DeviceKit to gudev.
+    - Bug fixes.
+  * debian/control:
+    - libpolkit-dbus-dev → libpolkit-gobject-1-dev build dependency.
+    - libdevkit-gobject-dev → libgudev-1.0-dev build dependency.
+    - Drop devicekit dependency.
+    - Add Breaks to gnome-power-manager versions which aren't ported to new
+      PolicyKit API yet.
+  * Drop 0001-Add-a-notify-flag-to-set_lid_is_closed.patch, fixed upstream.
+
+  [ Michael Biebl ]
+  * Add debian/README.source which refers to the quilt documentation.
+  * Bump Standards-Version to 3.8.3.
+  * Upload to unstable.
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 28 Sep 2009 06:58:20 +0200
+
+devicekit-power (009-1) experimental; urgency=low
+
+  * New upstream release.
+  * debian/control: Add myself to uploaders (discussed with Michael).
+  * debian/devicekit-power.install: Upstream installs udev rules into
+    /lib/udev/rules.d now, update accordingly.
+  * Add 0001-Add-a-notify-flag-to-set_lid_is_closed.patch: Properly fix the
+    silencing of the coldplug lid event, so that the first real lid event
+    actually works. Thanks to Loïc Minier! (fd.o #22574)
+
+ -- Martin Pitt <mpitt@debian.org>  Mon, 06 Jul 2009 19:12:49 +0200
+
+devicekit-power (008-1) experimental; urgency=low
+
+  * New upstream release.
+  * debian/copyright
+    - Add Name, Maintainer and Source field as recommended by DEP-5.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 03 Jun 2009 13:47:15 +0200
+
+devicekit-power (007-1) experimental; urgency=low
+
+  * Initial release. (Closes: #521363)
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 18 May 2009 08:50:24 +0200
