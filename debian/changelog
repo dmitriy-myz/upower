@@ -1,3 +1,25 @@
+upower (0.9.1-2) unstable; urgency=low
+
+  [ Michael Biebl ]
+  * debian/control
+    - Update Homepage field.
+
+  [ Martin Pitt ]
+  * debian/watch: Update for new upstream location.
+
+  [ Michael Biebl ]
+  * debian/patches/01-dummy-backend.patch
+    - Fix the dummy backend to compile successfully and make it usable on
+      GNU/Hurd which does not have a native backend (yet).
+      Patch based on work by Pino Toscano, thanks!
+  * debian/patches/99-autoreconf.patch
+    - Run autoreconf as the patch above needed changes to the build system.
+  * debian/control
+    - Don't build depend on libgudev-1.0-dev on hurd-i386.
+    - Don't build depend on libusb-dev on kfreebsd-* and hurd-i386.
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 05 Apr 2010 00:21:22 +0200
+
 upower (0.9.1-1) unstable; urgency=low
 
   [ Martin Pitt ]
