@@ -17,8 +17,9 @@ Build-Depends: debhelper (>= 7),
  libgudev-1.0-dev [!kfreebsd-amd64 !kfreebsd-i386 !hurd-i386],
  libkvm-dev [kfreebsd-amd64 kfreebsd-i386],
  libpolkit-gobject-1-dev (>= 0.91),
- libusb-dev [!kfreebsd-amd64 !kfreebsd-i386 !hurd-i386]
-Standards-Version: 3.8.4
+ libusb-1.0-0-dev [!kfreebsd-amd64 !kfreebsd-i386 !hurd-i386],
+ libimobiledevice-dev [!hurd-i386]
+Standards-Version: 3.9.0
 Vcs-Git: git://git.debian.org/git/pkg-utopia/upower.git
 Vcs-Browser: http://git.debian.org/?p=pkg-utopia/upower.git;a=summary
 Homepage: http://upower.freedesktop.org/
@@ -71,14 +72,6 @@ Description: abstraction for power management - development files
  operations (such as suspending the system) are restricted using PolicyKit.
  .
  This package contains files that are needed to build applications.
-
-Package: devicekit-power-doc
-Architecture: all
-Section: oldlibs
-Depends: ${misc:Depends}, upower-doc
-Description: transitional package to upower-doc
- This is a transitional package to faciliate the upgrade to the new name
- upower-doc. It can be safely removed after the upgrade.
 
 Package: libdevkit-power-gobject1
 Architecture: any
