@@ -1,3 +1,19 @@
+upower (0.9.5-2) unstable; urgency=low
+
+  * debian/control
+    - Bump Standards-Version to 3.9.1.
+    - Use architecture wildcards for the libgudev-1.0-dev, libkvm-dev and
+      libusb-1.0-0-dev build dependencies.
+    - Update Build-Depends according to configure.ac.
+  * debian/upower.postinst
+    - Query D-Bus to find out the correct pid of the process claiming
+      org.freedesktop.UPower. This way we do not accidentally kill the
+      wrong process when being installed in a chroot. (Closes: #594871)
+  * debian/upower.prerm
+    - Stop upowerd on remove. (Closes: #590017)
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 22 Sep 2010 01:02:15 +0200
+
 upower (0.9.5-1) unstable; urgency=low
 
   * New upstream release:
