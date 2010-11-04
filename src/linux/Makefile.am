@@ -4,6 +4,7 @@ INCLUDES = \
 	-I$(top_builddir)/src -I$(top_srcdir)/src		\
 	-DUP_COMPILATION					\
 	-DG_UDEV_API_IS_SUBJECT_TO_CHANGE			\
+	-DG_LOG_DOMAIN=\"UPower-Linux\"				\
 	-I$(top_srcdir)/libupower-glib				\
 	$(USB_CFLAGS)						\
 	$(GIO_CFLAGS)						\
@@ -41,7 +42,7 @@ libupshared_la_SOURCES =					\
 	$(idevice_files)					\
 	$(BUILT_SOURCES)
 
-EXTRA_DIST = up-device-idevice.c up-device-idevice.h
+EXTRA_DIST = $(libupshared_la_SOURCES)
 
 libupshared_la_CFLAGS =					\
 	$(WARNINGFLAGS_C)

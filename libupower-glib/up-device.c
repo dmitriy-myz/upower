@@ -286,6 +286,12 @@ up_device_set_object_path_sync (UpDevice *device, const gchar *object_path, GCan
 	if (object_path == NULL)
 		return FALSE;
 
+	/* invalid */
+	if (object_path == NULL || object_path[0] != '/') {
+		g_set_error (error, 1, 0, "Object path %s invalid", object_path);
+		goto out;
+	}
+
 	/* connect to the bus */
 	device->priv->bus = dbus_g_bus_get (DBUS_BUS_SYSTEM, &error_local);
 	if (device->priv->bus == NULL) {
@@ -450,7 +456,8 @@ up_device_to_text (UpDevice *device)
 	    device->priv->kind == UP_DEVICE_KIND_KEYBOARD ||
 	    device->priv->kind == UP_DEVICE_KIND_UPS)
 		g_string_append_printf (string, "    present:             %s\n", up_device_bool_to_string (device->priv->is_present));
-	if (device->priv->kind == UP_DEVICE_KIND_BATTERY ||
+	if (device->priv->kind == UP_DEVICE_KIND_PHONE ||
+	    device->priv->kind == UP_DEVICE_KIND_BATTERY ||
 	    device->priv->kind == UP_DEVICE_KIND_MOUSE ||
 	    device->priv->kind == UP_DEVICE_KIND_KEYBOARD)
 		g_string_append_printf (string, "    rechargeable:        %s\n", up_device_bool_to_string (device->priv->is_rechargeable));
@@ -490,6 +497,10 @@ up_device_to_text (UpDevice *device)
 	if (device->priv->kind == UP_DEVICE_KIND_BATTERY ||
 	    device->priv->kind == UP_DEVICE_KIND_MOUSE ||
 	    device->priv->kind == UP_DEVICE_KIND_KEYBOARD ||
+	    device->priv->kind == UP_DEVICE_KIND_PHONE ||
+	    device->priv->kind == UP_DEVICE_KIND_TABLET ||
+	    device->priv->kind == UP_DEVICE_KIND_COMPUTER ||
+	    device->priv->kind == UP_DEVICE_KIND_MEDIA_PLAYER ||
 	    device->priv->kind == UP_DEVICE_KIND_UPS)
 		g_string_append_printf (string, "    percentage:          %g%%\n", device->priv->percentage);
 	if (device->priv->kind == UP_DEVICE_KIND_BATTERY) {
@@ -563,7 +574,7 @@ out:
  *
  * Gets the device history.
  *
- * Return value: an array of #UpHistoryItem's, else #NULL and @error is used
+ * Return value: (transfer full): an array of #UpHistoryItem's, else #NULL and @error is used
  *
  * Since: 0.9.0
  **/
@@ -648,7 +659,7 @@ out:
  *
  * Gets the device current statistics.
  *
- * Return value: an array of #UpStatsItem's, else #NULL and @error is used
+ * Return value: (transfer full): an array of #UpStatsItem's, else #NULL and @error is used
  *
  * Since: 0.9.0
  **/

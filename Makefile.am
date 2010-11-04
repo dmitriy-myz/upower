@@ -2,7 +2,7 @@
 
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = etc devkit-power-gobject libupower-glib src doc tools policy po
+SUBDIRS = etc libupower-glib src doc tools policy po
 
 if BACKEND_TYPE_LINUX
 SUBDIRS += rules
@@ -33,10 +33,10 @@ snapshot:
 	$(MAKE) dist distdir=$(PACKAGE)-$(VERSION)-`date +"%Y%m%d"`
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = devkit-power-gobject.pc upower-glib.pc
+pkgconfig_DATA = upower-glib.pc
 
 # xsltproc barfs on 'make distcheck'; disable for now
-DISTCHECK_CONFIGURE_FLAGS=--disable-man-pages --enable-gtk-doc --enable-introspection
+DISTCHECK_CONFIGURE_FLAGS=--disable-man-pages --enable-gtk-doc
 
 clean-local :
 	rm -f *~
