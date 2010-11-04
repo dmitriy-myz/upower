@@ -1,3 +1,21 @@
+upower (0.9.7-1) experimental; urgency=low
+
+  * New upstream release.
+  * Remove patches that have been merged upstream
+    - debian/patches/00git_dont_poll_serial_port_if_no_wup_adaptor.patch
+    - debian/patches/00git_fix_double_dbus_return.patch
+    - debian/patches/00git_fix_missing_polkit_dbus_return.patch
+    - debian/patches/00git_fix_missing_qos_dbus_return.patch
+    - debian/patches/00git_initialize_polkit_gerror.patch
+  * Add Build-Depends on libpolkit-backend-1-dev (required if building against
+    the old PolicyKit API).
+  * Switch to source format 3.0 (quilt)
+    - Update debian/source/format
+    - Drop quilt from Build-Depends.
+    - Remove /usr/share/cdbs/1/rules/patchsys-quilt.mk include.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 04 Nov 2010 11:46:22 -0400
+
 upower (0.9.5-5) unstable; urgency=low
 
   * debian/patches/00git_dont_poll_serial_port_if_no_wup_adaptor.patch
