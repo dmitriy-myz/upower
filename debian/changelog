@@ -1,3 +1,20 @@
+upower (0.9.7+git20101104-e38cdd-1) experimental; urgency=low
+
+  * Upgrade to latest git head, up to commit e38cddbb8:
+    - Fix compilation eror against Linux 2.6.36
+    - Check for and link against libplist. Fixes building with gcc 4.5.
+    - Drop unnecessary check for polkit-backend.
+    - Fix test suite to work as normal user, by using a temporary directory
+      for the history files.
+  * debian/control: Remove libpolkit-backend-1-dev build dependency again,
+    this was only a workaround.
+  * debian/rules: Move from cdbs to dh. Bump debhelper build dependency to >=
+    7.0.50~, as required for overriding targets.
+  * debian/rules: Disable running the upstream tests during package build, as
+    they need a running system D-BUS (which we don't have on the buildds).
+
+ -- Martin Pitt <mpitt@debian.org>  Thu, 04 Nov 2010 23:57:46 -0400
+
 upower (0.9.7-1) experimental; urgency=low
 
   * New upstream release.
