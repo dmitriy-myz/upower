@@ -1,3 +1,16 @@
+upower (0.9.8-1) experimental; urgency=low
+
+  * New upstream release. Changes since our previous git snapshot:
+    - Add an "IsDocked" property.
+    - Testsuite: Reduce race condition in history purging check.
+    - Update the list of HID UPS devices
+    - Fix links to git repository in HACKING
+    - Support the power_now sysfs attribute to get time remaining on new
+      kernels
+  * debian/libupower-glib1.symbols: Add new symbol.
+
+ -- Martin Pitt <mpitt@debian.org>  Fri, 07 Jan 2011 16:56:11 +0100
+
 upower (0.9.7+git20101104-e38cdd-1) experimental; urgency=low
 
   * Upgrade to latest git head, up to commit e38cddbb8:
