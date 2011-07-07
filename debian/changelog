@@ -1,3 +1,14 @@
+upower (0.9.12-1) unstable; urgency=low
+
+  * New upstream release:
+    - Fix estimation rate for batteries that do not provide this data.
+      (LP: #629258)
+  * debian/copyright: Fix headers.
+  * debian/watch: Look for *.xz tarballs, upstream only publishes these now.
+    Repack our tarball as tar.bz2.
+
+ -- Martin Pitt <mpitt@debian.org>  Thu, 07 Jul 2011 13:06:06 +0200
+
 upower (0.9.11-1) unstable; urgency=low
 
   * New upstream bug fix release.
