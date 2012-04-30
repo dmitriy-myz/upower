@@ -1,3 +1,13 @@
+upower (0.9.16-1) unstable; urgency=low
+
+  * New upstream release.
+  * Drop explicit Build-Depends on gir1.2-glib-2.0.
+  * Use the systemd service file that is shipped upstream now.
+  * Bump Standards-Version to 3.9.3.
+  * debian/copyright: Update Format URL to the final 1.0 spec.
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 30 Apr 2012 21:04:49 +0200
+
 upower (0.9.15-2) unstable; urgency=low
 
   * debian/control: Change section of gir1.2-upowerglib-1.0 to introspection.
