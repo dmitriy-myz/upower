@@ -1,3 +1,21 @@
+upower (0.9.20-1) experimental; urgency=low
+
+  * New upstream release.
+  * Bump libpolkit-gobject-1-dev build dependency as per upstream
+    configure.ac.
+  * Build with --enable-deprecated, we are not ready yet to drop
+    suspend/hibernate functionality.
+  * Bump Standards-Version to 3.9.4. No changes necessary.
+  * Add "build" autopkgtest to compile/link/run a simple program against
+    libupower-glib.
+  * Drop unnecessary "needs-root" restriction from upstream-system
+    autopkgtest.
+  * Add no_deprecation_define.patch: Do not require applications to define
+    UPOWER_ENABLE_DEPRECATED to access suspend/resume functionality. We are
+    not ready to do that yet in Debian.
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 19 Mar 2013 19:19:51 +0100
+
 upower (0.9.19-1) experimental; urgency=low
 
   * New upstream release.
