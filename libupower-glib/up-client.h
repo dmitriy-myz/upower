@@ -23,6 +23,9 @@
 #error "Only <upower.h> can be included directly."
 #endif
 
+/* Debian specific: We are not ready yet to deprecate this by default */
+#define UPOWER_ENABLE_DEPRECATED
+
 #ifndef __UP_CLIENT_H
 #define __UP_CLIENT_H
 
@@ -60,8 +63,10 @@ typedef struct
 	void			(*device_removed)	(UpClient		*client,
 							 UpDevice		*device);
 	void			(*changed)		(UpClient		*client);
+	/* FIXME: remove when we next break API */
 	void			(*notify_sleep)		(UpClient		*client,
 							 UpSleepKind		 sleep_kind);
+	/* FIXME: remove when we next break API */
 	void			(*notify_resume)	(UpClient		*client,
 							 UpSleepKind		 sleep_kind);
 	/*< private >*/
@@ -87,6 +92,7 @@ gboolean	 up_client_get_properties_sync		(UpClient		*client,
 gboolean	 up_client_enumerate_devices_sync	(UpClient		*client,
 							 GCancellable		*cancellable,
 							 GError			**error);
+#ifdef UPOWER_ENABLE_DEPRECATED
 gboolean	 up_client_suspend_sync			(UpClient		*client,
 							 GCancellable		*cancellable,
 							 GError			**error);
@@ -97,16 +103,21 @@ gboolean	 up_client_about_to_sleep_sync		(UpClient		*client,
 gboolean	 up_client_hibernate_sync		(UpClient		*client,
 							 GCancellable		*cancellable,
 							 GError			**error);
+#endif
 
 /* accessors */
 GPtrArray	*up_client_get_devices			(UpClient		*client);
 const gchar	*up_client_get_daemon_version		(UpClient		*client);
+#ifdef UPOWER_ENABLE_DEPRECATED
 gboolean	 up_client_get_can_hibernate		(UpClient		*client);
+#endif
 gboolean	 up_client_get_lid_is_closed		(UpClient		*client);
 gboolean	 up_client_get_lid_is_present		(UpClient		*client);
 gboolean	 up_client_get_lid_force_sleep		(UpClient		*client);
 gboolean	 up_client_get_is_docked		(UpClient		*client);
+#ifdef UPOWER_ENABLE_DEPRECATED
 gboolean	 up_client_get_can_suspend		(UpClient		*client);
+#endif
 gboolean	 up_client_get_on_battery		(UpClient		*client);
 gboolean	 up_client_get_on_low_battery		(UpClient		*client);
 
