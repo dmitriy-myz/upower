@@ -8,6 +8,7 @@ override_dh_auto_configure:
 		--enable-gtk-doc \
 		--enable-introspection \
 		--enable-deprecated \
+		--with-systemdutildir=/lib/systemd \
 		--with-systemdsystemunitdir=/lib/systemd/system \
 		--libexecdir=\$${prefix}/lib/upower
 
@@ -19,7 +20,7 @@ override_dh_auto_test:
 	# test suite needs system D-BUS and thus does not work on buildds
 
 override_dh_install:
-	dh_install
+	dh_install --fail-missing -Xrules.d -X.la
 	# Only install udev rules on Linux architectures. The
 	# directory doesn't even exist on e.g. GNU/kFreeBSD
 ifeq ($(DEB_HOST_ARCH_OS),linux)
