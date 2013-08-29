@@ -1,3 +1,13 @@
+upower (0.9.21-3) unstable; urgency=low
+
+  * Add 00git_updates.patch to update to today's upstream git:
+    - Fix batteries which report capacity, but not energy/charge
+    - Add temperature property for batteries
+    - Fix warning in up_device_supply_get_design_voltage
+    - Make GetHistory() array order consistent
+
+ -- Martin Pitt <mpitt@debian.org>  Thu, 29 Aug 2013 11:34:28 +0200
+
 upower (0.9.21-2) unstable; urgency=low
 
   [ Martin Pitt ]
@@ -12,6 +22,7 @@ upower (0.9.21-2) unstable; urgency=low
     backend, even if logind is running. The availability of logind does not
     necessarily imply, that systemd is running (in a recent enough version),
     which is required for a successful suspend/hibernate.
+    (Closes: #718458, LP: #1196752)
 
  -- Michael Biebl <biebl@debian.org>  Sat, 03 Aug 2013 00:56:44 +0200
 
