@@ -23,6 +23,9 @@
 #error "Only <upower.h> can be included directly."
 #endif
 
+/* Debian specific: We are not ready yet to deprecate this by default */
+#define UPOWER_ENABLE_DEPRECATED
+
 #ifndef __UP_CLIENT_H
 #define __UP_CLIENT_H
 
