@@ -1,3 +1,10 @@
+upower (0.9.22-1) unstable; urgency=low
+
+  * New upstream release.
+  * Drop 00git_updates.patch, included in new release.
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 08 Oct 2013 18:26:25 +0200
+
 upower (0.9.21-3) unstable; urgency=low
 
   * Add 00git_updates.patch to update to today's upstream git:
