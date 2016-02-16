@@ -1,3 +1,17 @@
+upower (0.99.4-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Run wrap-and-sort -at.
+  * Drop (Build-)Depends on libdbus-1-dev and libdbus-glib-1-dev. UPower has
+    been ported to use GDBus.
+  * Update symbols file for libupower-glib3. A couple of private symbols were
+    dropped (up_*_glue_*) and new private symbols were added (up_exported_*).
+    Mark those as optional.
+  * Use https:// for Vcs-Browser.
+  * Bump Standards-Version to 3.9.7.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 17 Feb 2016 00:19:34 +0100
+
 upower (0.99.3-1) unstable; urgency=medium
 
   * New upstream release:
