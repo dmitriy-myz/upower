@@ -1,4 +1,15 @@
-upower (0.99.4-2) xenial; urgency=high
+upower (0.99.4-3) unstable; urgency=medium
+
+  * UpKbdBacklight: Don't cache the brightness level, always read
+    it from sysfs. (LP: #1583861)
+  * Fix up_client_new() returning an invalid object (that causes crashes on
+    any operation) when upowerd is not (yet) started. (LP: #1546641)
+  * debian/libupower-glib3.symbols: Add new symbol from previous patch.
+  * Bump Standards-Version to 3.9.8 (no changes necessary).
+
+ -- Martin Pitt <mpitt@debian.org>  Fri, 10 Jun 2016 10:28:20 +0200
+
+upower (0.99.4-2) unstable; urgency=high
 
   * Urgency high as this is a targetted fix for RC bug in testing.
   * Fix copy&paste error that called the wrong _complete_ function
