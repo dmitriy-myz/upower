@@ -16,9 +16,6 @@ ReadWritePaths=@historydir@
 ProtectHome=true
 PrivateTmp=true
 
-# Network
-PrivateNetwork=true
-
 # Execute Mappings
 MemoryDenyWriteExecute=true
 
