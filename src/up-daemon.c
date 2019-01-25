@@ -218,6 +218,9 @@ up_daemon_update_display_battery (UpDaemon *daemon)
 		else if (state == UP_DEVICE_STATE_DISCHARGING &&
 			 state_total != UP_DEVICE_STATE_CHARGING)
 			state_total = UP_DEVICE_STATE_DISCHARGING;
+		else if (state == UP_DEVICE_STATE_PENDING_CHARGE &&
+			 (state_total == UP_DEVICE_STATE_UNKNOWN || state_total == UP_DEVICE_STATE_PENDING_CHARGE))
+			state_total = UP_DEVICE_STATE_PENDING_CHARGE;
 		else if (state == UP_DEVICE_STATE_FULLY_CHARGED &&
 			 state_total == UP_DEVICE_STATE_UNKNOWN)
 			state_total = UP_DEVICE_STATE_FULLY_CHARGED;
