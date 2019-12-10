@@ -28,7 +28,7 @@ int main()
 }
 EOF
 
-${CROSS_COMPILE}gcc -o libupowertest libupowertest.c `pkg-config --cflags --libs upower-glib` -Wall -Werror
+${CROSS_COMPILE}gcc -o libupowertest libupowertest.c `${CROSS_COMPILE}pkg-config --cflags --libs upower-glib` -Wall -Werror
 echo "build: OK"
 [ -x libupowertest ]
 env G_DEBUG="fatal-warnings fatal-criticals" ./libupowertest
