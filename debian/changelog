@@ -1,3 +1,9 @@
+upower (0.99.11-1build1) focal; urgency=medium
+
+  * Make autopkgtests cross-test-friendly.
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 10 Dec 2019 11:05:25 +0100
+
 upower (0.99.11-1) unstable; urgency=medium
 
   * New upstream version 0.99.11
