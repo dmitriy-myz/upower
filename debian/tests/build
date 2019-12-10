@@ -8,6 +8,13 @@ set -e
 
 WORKDIR=$(mktemp -d)
 trap "rm -rf $WORKDIR" 0 INT QUIT ABRT PIPE TERM
+
+if [ -n "${DEB_HOST_GNU_TYPE:-}" ]; then
+    CROSS_COMPILE="$DEB_HOST_GNU_TYPE-"
+else
+    CROSS_COMPILE=
+fi
+
 cd $WORKDIR
 cat <<EOF > libupowertest.c
 #include <string.h>
@@ -21,7 +28,7 @@ int main()
 }
 EOF
 
-gcc -o libupowertest libupowertest.c `pkg-config --cflags --libs upower-glib` -Wall -Werror
+${CROSS_COMPILE}gcc -o libupowertest libupowertest.c `pkg-config --cflags --libs upower-glib` -Wall -Werror
 echo "build: OK"
 [ -x libupowertest ]
 env G_DEBUG="fatal-warnings fatal-criticals" ./libupowertest
