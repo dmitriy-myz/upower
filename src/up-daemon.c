@@ -654,7 +654,7 @@ up_daemon_compute_warning_level (UpDaemon      *daemon,
 	    kind == UP_DEVICE_KIND_KEYBOARD) {
 		if (percentage <= 5.0f)
 			return UP_DEVICE_LEVEL_CRITICAL;
-		else if (percentage <= 10.0f)
+		else if (percentage <= 9.0f)
 			return  UP_DEVICE_LEVEL_LOW;
 		else
 			return UP_DEVICE_LEVEL_NONE;

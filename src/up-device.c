@@ -61,6 +61,7 @@ static void
 update_warning_level (UpDevice *device)
 {
 	UpDeviceLevel warning_level, battery_level;
+	UpDeviceKind   kind;
 	UpExportedDevice *skeleton = UP_EXPORTED_DEVICE (device);
 
 	/* Not finished setting up the object? */
@@ -70,9 +71,14 @@ update_warning_level (UpDevice *device)
 	/* If the battery level is available, and is critical,
 	 * we need to fallback to calculations to get the warning
 	 * level, as that might be "action" at this point */
+	kind = up_exported_device_get_type_ (skeleton);
+
 	battery_level = up_exported_device_get_battery_level (skeleton);
 	if (battery_level != UP_DEVICE_LEVEL_NONE &&
-	    battery_level != UP_DEVICE_LEVEL_CRITICAL) {
+	    battery_level != UP_DEVICE_LEVEL_CRITICAL &&
+	    kind != UP_DEVICE_KIND_MOUSE &&
+	    kind != UP_DEVICE_KIND_KEYBOARD
+	    ) {
 		if (battery_level == UP_DEVICE_LEVEL_LOW)
 			warning_level = battery_level;
 		else
